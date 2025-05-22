@@ -1,0 +1,18 @@
+CREATE DATABASE IF NOT EXISTS demo;
+USE demo;
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+CREATE TABLE IF NOT EXISTS todos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    target_date DATE,
+    username VARCHAR(100) NOT NULL,
+    is_done BOOLEAN DEFAULT 0,
+    FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE
+);
